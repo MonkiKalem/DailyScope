@@ -101,7 +101,7 @@ const Dashboard = () => {
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
-              className={`btn btn-secondary ${currentPage === index + 1 ? 'active' : ''}`}
+              className={`btn ${currentPage === index + 1 ? 'active' : ''}`}
               onClick={() => handlePageChange(index + 1)}
             >
               {index + 1}

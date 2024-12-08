@@ -1,13 +1,68 @@
+*{
+  font-family: "Reddit Sans", sans-serif;
+}
+
+/* navbar */
+.navbar .dropdown-toggle::after {
+  display: none; /* Hide the dropdown arrow */
+}
+
+/* cards */
 .card {
  height: 500px;
 }
 
 .card-text {
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limit text to 3 lines */
+    -webkit-line-clamp: 3; 
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: break-word;
   }
   
+  /* Pagination Container */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Pagination Buttons */
+.pagination .btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 20px;
+  border: 1px solid #007bff;
+  background-color: #f1f1f1;
+  color: #007bff;
+  transition: background-color 0.3s, color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Active Button */
+.pagination .btn.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Hover Effects */
+.pagination .btn:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+/* Disabled Button */
+.pagination .btn[disabled] {
+  background-color: #f1f1f1;
+  color: #ccc;
+  border-color: #ddd;
+  cursor: not-allowed;
+}

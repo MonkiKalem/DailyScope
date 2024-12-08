@@ -4,12 +4,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Register = () => {
   const [user, setUser] = useState({ name: '', username: '', password: '' });
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    localStorage.setItem('user', JSON.stringify(user));
-    alert('Registration successful!');
-    navigate('/login');
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser && storedUser.username === user.username) {
+      setError('Username already exists!');
+    } else {
+      localStorage.setItem('user', JSON.stringify(user));
+      alert('Registration successful!');
+      navigate('/login');
+    }
   };
 
   return (
@@ -48,10 +54,13 @@ const Register = () => {
                 required
               />
             </div>
+            {error && <div className="text-danger">{error}</div>}
             <button type="button" className="btn btn-primary w-100" onClick={handleRegister}>
               Register
             </button>
           </form>
+          <p>Already have an account? </p>
+          <a href='/register'>login here</a>
         </div>
       </div>
     </div>

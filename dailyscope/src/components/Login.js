@@ -4,19 +4,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = () => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (
-      storedUser &&
+
+    if (!storedUser) {
+      setError('No registered user found.');
+    } else if (
       storedUser.username === credentials.username &&
       storedUser.password === credentials.password
     ) {
       alert('Login successful!');
-      navigate('/dashboard');
+      navigate('/');
     } else {
-      alert('Invalid Username or Password');
+      setError('Invalid Username or Password');
     }
   };
 
@@ -46,10 +49,13 @@ const Login = () => {
                 required
               />
             </div>
+            {error && <div className="text-danger">{error}</div>}
             <button type="button" className="btn btn-primary w-100" onClick={handleLogin}>
               Login
             </button>
           </form>
+          <p>Dont have an account? </p>
+          <a href='/register'>register here</a>
         </div>
       </div>
     </div>
