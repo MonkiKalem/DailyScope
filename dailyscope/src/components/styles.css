@@ -2,14 +2,52 @@
   font-family: "Reddit Sans", sans-serif;
 }
 
+/* components */
+.text-primary {
+  color: #F4CE14 !important;
+}
+
+.btn-primary {
+  background-color: #379777;
+  border: #379777;
+}
+
+.btn-primary:hover {
+  background-color: #288062;
+  border: #288062;
+}
+
+.fa-user-circle {
+  color: #F4CE14;
+}
+
 /* navbar */
+.navbar {
+  background-color: #379777;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Navbar after scrolling */
+.navbar.scrolled {
+  background-color: #288062;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.navbar-brand {
+  color: #F4CE14;
+}
+.navbar-brand:hover {
+  color: #F4CE14;
+}
 .navbar .dropdown-toggle::after {
   display: none; /* Hide the dropdown arrow */
 }
 
-/* cards */
-.card {
+/* dashboard */
+.card-dashboard {
  height: 500px;
+ box-shadow: 1px 1px 9px -1px rgba(69,69,69,0.75);
+ -webkit-box-shadow: 1px 1px 9px -1px rgba(69,69,69,0.75);
+ -moz-box-shadow: 1px 1px 9px -1px rgba(69,69,69,0.75);
 }
 
 .card-text {
@@ -36,9 +74,9 @@
   padding: 8px 16px;
   font-size: 14px;
   border-radius: 20px;
-  border: 1px solid #007bff;
+  border: 1px solid #379777;
   background-color: #f1f1f1;
-  color: #007bff;
+  color: #379777;
   transition: background-color 0.3s, color 0.3s;
   display: inline-flex;
   align-items: center;
@@ -47,16 +85,16 @@
 
 /* Active Button */
 .pagination .btn.active {
-  background-color: #007bff;
+  background-color: #379777;
   color: white;
-  border-color: #007bff;
+  border-color: #379777;
 }
 
 /* Hover Effects */
 .pagination .btn:hover {
-  background-color: #007bff;
+  background-color: #379777;
   color: white;
-  border-color: #0056b3;
+  border-color: #288062;
 }
 
 /* Disabled Button */
@@ -65,4 +103,45 @@
   color: #ccc;
   border-color: #ddd;
   cursor: not-allowed;
+}
+
+/* Specific to Detail Page */
+.card-detail {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  margin: 0; /* Reset any default margin */
+  padding: 0; /* Reset any default padding */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-detail .row {
+  display: flex;
+  align-items: stretch;
+  margin: 0; /* Remove row-level margin */
+}
+
+.card-detail img {
+  width: 100%;
+  height: auto; /* Constrain to the image's aspect ratio */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-detail .card-body {
+  padding: 20px; /* Ensure consistent spacing for the text */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center-align the text */
+}
+
+/* Ensure the back button and spacing work smoothly */
+.card-detail-container {
+  margin-top: 30px;
+}
+
+.card-detail .btn {
+  margin-top: 15px;
 }

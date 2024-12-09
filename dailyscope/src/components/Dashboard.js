@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [totalResults, setTotalResults] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [category, setCategory] = useState('');
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(sessionStorage.getItem('user'));
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Dashboard = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     // Update URL dengan halaman baru
-    navigate(`/dashboard?page=${pageNumber}`);
+    navigate(`/?page=${pageNumber}`);
   };
 
   const handleSearch = () => {
@@ -74,7 +74,7 @@ const Dashboard = () => {
         <div className="row">
           {articles.map((article, index) => (
             <div className="col-12 col-sm-6 col-md-4" key={index}>
-              <div className="card mb-3">
+              <div className="card card-dashboard mb-3">
                 <img
                   src={article.urlToImage || 'https://via.placeholder.com/150'}
                   className="card-img-top"

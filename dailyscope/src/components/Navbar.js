@@ -1,25 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Bootstrap bundle (includes Popper.js)
-import '@fortawesome/fontawesome-free/css/all.min.css'; // Font Awesome for the icon
-import './styles.css'; // Import custom CSS if necessary
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import './styles.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user')); // Get user from localStorage
+  const [isScrolled, setIsScrolled] = useState(false);
+  const user = JSON.parse(sessionStorage.getItem('user')); // Get user from sessionStorage
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const handleBrandClick = () => {
+    if (user) {
+      navigate('/'); // Navigate to the dashboard if logged in
+    } else {
+      navigate('/register'); // Navigate to the register page if not logged in
+    }
+  };
 
   const handleLogout = () => {
-    localStorage.removeItem('user'); // Remove user data from localStorage
-    navigate('/login'); // Navigate to login page
+    sessionStorage.removeItem('user'); // Remove only the session-specific login data
+    navigate('/login'); // Navigate to the login page
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className={`navbar navbar-expand-lg ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
-        <a className="navbar-brand" href="/dashboard">
+        <span className="navbar-brand" onClick={handleBrandClick} style={{ cursor: 'pointer' }}>
           <h1>DailyScope</h1>
-        </a>
+        </span>
         <button
           className="navbar-toggler"
           type="button"
@@ -42,7 +67,7 @@ const Navbar = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <i className="fas fa-user-circle" style={{ fontSize: '2rem' }}></i> {/* User Icon */}
+                <i className="fas fa-user-circle" style={{ fontSize: '2rem' }}></i>
               </button>
               <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <span className="dropdown-item disabled">{user?.name}</span>

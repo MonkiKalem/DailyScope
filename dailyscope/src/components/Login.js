@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || []; // Get registered users
+    const user = storedUsers.find(
+      (u) => u.username === credentials.username && u.password === credentials.password
+    );
 
-    if (!storedUser) {
-      setError('No registered user found.');
-    } else if (
-      storedUser.username === credentials.username &&
-      storedUser.password === credentials.password
-    ) {
+    if (user) {
+      sessionStorage.setItem('user', JSON.stringify(user)); // Save to sessionStorage
+      setUser(user); // Update the user state in App.js
       alert('Login successful!');
-      navigate('/');
+      navigate('/'); // Redirect to dashboard
     } else {
       setError('Invalid Username or Password');
     }
@@ -54,8 +54,8 @@ const Login = () => {
               Login
             </button>
           </form>
-          <p>Dont have an account? </p>
-          <a href='/register'>register here</a>
+          <p class="text-center mt-2">Dont have an account? <a href='/register'>register here</a> </p>
+          
         </div>
       </div>
     </div>

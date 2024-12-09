@@ -3,16 +3,47 @@ import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Register = () => {
-  const [user, setUser] = useState({ name: '', username: '', password: '' });
+  const [user, setUser] = useState({ name: '', username: '', password: '', confirmPassword: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser && storedUser.username === user.username) {
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || []; // Array of registered users
+    const userExists = storedUsers.find((u) => u.username === user.username);
+
+    // Validation for username, password, and confirm password
+    if (user.name.length < 0) {
+      setError('Name cannot be empty!');
+      return;
+    }
+    if (user.username.length < 0) {
+      setError('username cannot be empty!');
+      return;
+    }
+    if (user.password.length < 0) {
+      setError('password cannot be empty!');
+      return;
+    }
+    if (user.username.length < 3) {
+      setError('Username must be at least 3 characters long!');
+      return;
+    }
+
+    if (user.password.length < 8) {
+      setError('Password must be at least 8 characters long!');
+      return;
+    }
+
+    if (user.password !== user.confirmPassword) {
+      setError('Passwords do not match!');
+      return;
+    }
+
+    if (userExists) {
       setError('Username already exists!');
     } else {
-      localStorage.setItem('user', JSON.stringify(user));
+      const updatedUsers = [...storedUsers, { name: user.name, username: user.username, password: user.password }];
+      localStorage.setItem('users', JSON.stringify(updatedUsers)); // Save updated users list
       alert('Registration successful!');
       navigate('/login');
     }
@@ -54,13 +85,22 @@ const Register = () => {
                 required
               />
             </div>
+            <div className="mb-3">
+              <label className="form-label">Confirm Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Re-enter your password"
+                onChange={(e) => setUser({ ...user, confirmPassword: e.target.value })}
+                required
+              />
+            </div>
             {error && <div className="text-danger">{error}</div>}
             <button type="button" className="btn btn-primary w-100" onClick={handleRegister}>
               Register
             </button>
           </form>
-          <p>Already have an account? </p>
-          <a href='/register'>login here</a>
+          <p className="text-center mt-2">Already have an account? <a href="/login">login here</a></p>
         </div>
       </div>
     </div>
