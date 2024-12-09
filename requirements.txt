@@ -1,0 +1,4 @@
+npm install axios
+npm install react-scripts
+npm install bootstrap
+npm install --save @fortawesome/fontawesome-free
