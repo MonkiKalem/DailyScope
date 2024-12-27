@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from '../assets/dark.png';
 
 const Register = () => {
   const [user, setUser] = useState({ name: '', username: '', password: '', confirmPassword: '' });
@@ -53,7 +54,16 @@ const Register = () => {
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h2 className="text-center mb-4">Register</h2>
+          <div className="d-flex align-items-center justify-content-center">
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="img-fluid"
+                  style={{ maxHeight: '80px', marginRight: '10px' }}
+                />
+                <h2 className="mb-0 mt-4">DailyScope</h2>
+          </div>
+          <h2 className="text-center mb-4 mt-5">Register</h2>
           <form>
             <div className="mb-3">
               <label className="form-label">Name</label>

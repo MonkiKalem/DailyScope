@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './styles.css';
+import logo from '../assets/light.png';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -42,8 +43,14 @@ const Navbar = () => {
   return (
     <nav className={`navbar navbar-expand-lg ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
-        <span className="navbar-brand" onClick={handleBrandClick} style={{ cursor: 'pointer' }}>
-          <h1>DailyScope</h1>
+        <span className="navbar-brand d-flex align-items-center justify-content-center" onClick={handleBrandClick} style={{ cursor: 'pointer' }}>    
+          <img
+                  src={logo}
+                  alt="Logo"
+                  className="img-fluid"
+                  style={{ maxHeight: '50px', marginRight: '10px' }}
+                />
+          <h1 className='mt-3'>DailyScope</h1>
         </span>
         <button
           className="navbar-toggler"

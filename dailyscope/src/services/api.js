@@ -1,6 +1,6 @@
 export const fetchNews = async (page = 1, pageSize = 10, query = '', category = '') => {
   const apiKey = process.env.REACT_APP_NEWS_API_KEY; // Pastikan API key diset di .env
-  const baseUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
+  const baseUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`; 
   
   // Menambahkan query, kategori, dan pagination pada URL
   const url = `${baseUrl}&page=${page}&pageSize=${pageSize}${query ? `&q=${query}` : ''}${category ? `&category=${category}` : ''}`;

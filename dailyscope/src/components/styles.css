@@ -8,28 +8,58 @@
 }
 
 .btn-primary {
-  background-color: #379777;
-  border: #379777;
+  background-color: rgb(117, 84, 216, 1);
+  border: rgb(117, 84, 216, 1);
 }
 
 .btn-primary:hover {
-  background-color: #288062;
-  border: #288062;
+  background-color: rgb(103, 79, 173);
+  border: rgb(103, 79, 173);
 }
 
 .fa-user-circle {
   color: #F4CE14;
 }
 
+/*carousel */
+.carousel-item img {
+  border-radius: 10px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.carousel-caption h5 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.carousel-caption p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.form-control {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+
 /* navbar */
 .navbar {
-  background-color: #379777;
+  background-color: rgb(117, 84, 216, 1);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Navbar after scrolling */
 .navbar.scrolled {
-  background-color: #288062;
+  background-color: rgb(117, 84, 216, 1);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .navbar-brand {
@@ -74,9 +104,9 @@
   padding: 8px 16px;
   font-size: 14px;
   border-radius: 20px;
-  border: 1px solid #379777;
+  border: 1px solid rgb(117, 84, 216, 1);
   background-color: #f1f1f1;
-  color: #379777;
+  color: rgb(117, 84, 216, 1);
   transition: background-color 0.3s, color 0.3s;
   display: inline-flex;
   align-items: center;
@@ -85,16 +115,16 @@
 
 /* Active Button */
 .pagination .btn.active {
-  background-color: #379777;
+  background-color: rgb(117, 84, 216, 1);
   color: white;
-  border-color: #379777;
+  border-color: rgb(117, 84, 216, 1);
 }
 
 /* Hover Effects */
 .pagination .btn:hover {
-  background-color: #379777;
+  background-color: rgb(117, 84, 216, 1);
   color: white;
-  border-color: #288062;
+  border-color: rgb(103, 79, 173);
 }
 
 /* Disabled Button */
